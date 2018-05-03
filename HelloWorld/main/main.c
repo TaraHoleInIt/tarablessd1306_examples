@@ -29,7 +29,7 @@
     static const int SPIDisplayChipSelect = 15;
     static const int SPIDisplayWidth = 128;
     static const int SPIDisplayHeight = 64;
-    static const int SPIResetPin = -1;
+    static const int SPIResetPin = 5;
 
     struct SSD1306_Device SPIDisplay;
 #endif
@@ -45,7 +45,7 @@ bool DefaultBusInit( void ) {
 
     #if defined USE_SPI_DISPLAY
         assert( SSD1306_SPIMasterInitDefault( ) == true );
-        assert( SSD1306_SPIMasterAttachDisplayDefault( &SPIDisplay, I2CDisplayWidth, I2CDisplayHeight, SPIDisplayChipSelect, I2CResetPin ) == true );
+        assert( SSD1306_SPIMasterAttachDisplayDefault( &SPIDisplay, SPIDisplayWidth, SPIDisplayHeight, SPIDisplayChipSelect, SPIResetPin ) == true );
     #endif
 
     return true;

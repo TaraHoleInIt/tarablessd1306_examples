@@ -4,3 +4,6 @@
 [submodule "Fonts/components/tarablessd1306"]
 	path = Fonts/components/tarablessd1306
 	url = https://github.com/TaraHoleInIt/tarablessd1306
+[submodule "snow/components/tarablessd1306"]
+	path = snow/components/tarablessd1306
+	url = https://github.com/TaraHoleInIt/tarablessd1306

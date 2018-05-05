@@ -34,6 +34,11 @@
     } \
 }
 
+#define Clamp( value, min, max ) { \
+    value = ( value < min ) ? min : value; \
+    value = ( value > max ) ? max : value; \
+}\
+
 struct SnowflakeInfo {
     int x;
     int y;
@@ -195,6 +200,8 @@ static void DrawSnowflakes( struct SnowflakeTaskData* TaskData ) {
  */
 static void UpdateSnowflakes( struct SnowflakeTaskData* TaskData ) {
     struct SnowflakeInfo* Flake = NULL;
+    int NeighbourLeft = 0;
+    int NeighbourRight = 0;
     int i = 0;
 
     ValidateParamPtr( TaskData, return );
@@ -208,11 +215,24 @@ static void UpdateSnowflakes( struct SnowflakeTaskData* TaskData ) {
             Flake->y+= Flake->dy;
 
             if ( HasSnowflakeLanded( TaskData, Flake ) == true ) {
-                TaskData->LineHeights[ Flake->x ]+= 1;
+                NeighbourLeft = ( Flake->x > 0 ) ? TaskData->LineHeights[ Flake->x - 1 ] : 0;
+                NeighbourRight = ( Flake->x < ( TaskData->Display->Width - 1 ) ) ? TaskData->LineHeights[ Flake->x + 1 ] : 0;
 
-                if ( TaskData->LineHeights[ Flake->x ] >= ( TaskData->Display->Height - 1 ) ) {
-                    TaskData->LineHeights[ Flake->x ] = TaskData->Display->Height - 1;
-                }
+                if ( Flake->x > 0 && Flake->x < ( TaskData->Display->Width - 1 ) ) {
+                    if ( ( TaskData->LineHeights[ Flake->x ] - NeighbourLeft ) >= 2 ) {
+                        TaskData->LineHeights[ Flake->x - 1 ]+= 1;
+                    }
+
+                    if ( ( TaskData->LineHeights[ Flake->x ] - NeighbourRight ) >= 2 ) {
+                        TaskData->LineHeights[ Flake->x + 1 ]+= 1;
+                    }
+
+                    Clamp( TaskData->LineHeights[ Flake->x - 1 ], DefaultSnowLevel, TaskData->Display->Height - 1 );
+                    Clamp( TaskData->LineHeights[ Flake->x + 1 ], DefaultSnowLevel, TaskData->Display->Height - 1 );
+                }             
+
+                TaskData->LineHeights[ Flake->x ]+= 1;
+                Clamp( TaskData->LineHeights[ Flake->x ], DefaultSnowLevel, TaskData->Display->Height - 1 );
 
                 Flake->x = 0;
                 Flake->y = 0;

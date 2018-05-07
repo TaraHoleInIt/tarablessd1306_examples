@@ -69,12 +69,12 @@ void app_main( void ) {
         printf( "Drawing.\n" );
 
         #if defined USE_I2C_DISPLAY
-            SetupDemo( &I2CDisplay, &Font_droid_sans_fallback_25x25 );
+            SetupDemo( &I2CDisplay, &Font_droid_sans_fallback_24x28 );
             SayHello( &I2CDisplay, "Hello i2c!" );
         #endif
 
         #if defined USE_SPI_DISPLAY
-            SetupDemo( &SPIDisplay, &Font_liberation_mono_17x27 );
+            SetupDemo( &SPIDisplay, &Font_liberation_mono_17x30 );
             SayHello( &SPIDisplay, "Hi SPI!" );
         #endif
 

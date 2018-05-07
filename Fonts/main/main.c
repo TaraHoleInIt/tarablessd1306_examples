@@ -50,15 +50,15 @@ static struct SSD1306_Device* Displays[ ] = {
 const int DisplayCount = sizeof( Displays ) / sizeof( Displays[ 0 ] );
 
 const struct SSD1306_FontDef* FontList[ ] = {
-    &Font_droid_sans_fallback_11x12,
-    &Font_droid_sans_fallback_16x17,
-    &Font_droid_sans_fallback_25x25,
-    &Font_droid_sans_mono_7x12,
-    &Font_droid_sans_mono_13x21,
-    &Font_droid_sans_mono_17x30,
-    &Font_liberation_mono_8x11,
-    &Font_liberation_mono_13x20,
-    &Font_liberation_mono_17x27,
+    &Font_droid_sans_fallback_11x13,
+    &Font_droid_sans_fallback_15x17,
+    &Font_droid_sans_fallback_24x28,
+    &Font_droid_sans_mono_7x13,
+    &Font_droid_sans_mono_13x24,
+    &Font_droid_sans_mono_16x31,
+    &Font_liberation_mono_9x15,
+    &Font_liberation_mono_13x21,
+    &Font_liberation_mono_17x30,
     NULL
 };
 

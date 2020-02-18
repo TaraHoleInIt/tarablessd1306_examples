@@ -3,7 +3,7 @@
 # project subdirectory.
 #
 
-PROJECT_NAME := tarablessd1306_helloworld
+PROJECT_NAME := tarablessd1306_snow
 
 include $(IDF_PATH)/make/project.mk
 

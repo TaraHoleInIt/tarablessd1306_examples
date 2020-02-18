@@ -14,12 +14,12 @@
 #include "ssd1306_default_if.h"
 
 #define USE_I2C_DISPLAY
-#define USE_SPI_DISPLAY
+//#define USE_SPI_DISPLAY
 
 #if defined USE_I2C_DISPLAY
     static const int I2CDisplayAddress = 0x3C;
     static const int I2CDisplayWidth = 128;
-    static const int I2CDisplayHeight = 64;
+    static const int I2CDisplayHeight = 32;
     static const int I2CResetPin = -1;
 
     struct SSD1306_Device I2CDisplay;
